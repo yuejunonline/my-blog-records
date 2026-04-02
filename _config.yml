@@ -102,3 +102,6 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+# Fluid 配置文件覆盖功能
+fluid:
+  _overwrite: true
