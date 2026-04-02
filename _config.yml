@@ -103,5 +103,5 @@ theme: fluid
 deploy:
   type: ''
 # Fluid 配置文件覆盖功能
-fluid:
+fluid1:
   _overwrite: true
