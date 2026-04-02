@@ -105,3 +105,6 @@ deploy:
 # Fluid 配置文件覆盖功能
 fluid:
   _overwrite: true
+aplayer:
+  meting: true
+  asset_inject: true
