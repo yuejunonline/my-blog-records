@@ -688,12 +688,12 @@ post:
   # 版权声明，会显示在每篇文章的结尾
   # Copyright, will be displayed at the end of each post
   copyright:
-    enable: false
+    enable: true
 
     # CreativeCommons license
     # See: https://creativecommons.org/share-your-work/cclicenses/
     # Options: BY | BY-SA | BY-ND | BY-NC | BY-NC-SA | BY-NC-ND | ZERO
-    license: 'BY'
+    license: 'BY-NC-ND'
 
     # 显示作者
     author:
