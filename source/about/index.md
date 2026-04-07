@@ -2,7 +2,7 @@
 title: 关于我
 date: 2026-03-30 12:00:00
 layout: about
-banner_img: https://img.friend8.online/2026/04/fbeb5bd5084e45f50a9ee23476042389.jpg
+banner_img: https://img.friend8.online/2026/04/a197c357b8085a03f3b349491a2b2576.jpg
 ---
 
 欢迎你的访问：
