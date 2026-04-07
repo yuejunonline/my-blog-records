@@ -1,0 +1,15 @@
+---
+title: 安康以南
+tags:
+  - 心情
+  - 旅游
+id: '886'
+categories:
+  - - 心情随笔
+comments: false
+date: 2015-03-18 20:57:34
+---
+
+印象最深刻的事情就是和好朋友一起去旅行。历时两个多星期，途径安康-镇坪-平利-竹溪-巫溪-巫山-神龙架-大九湖-十堰-山阳等多地。一路驾车前行，翻山越岭，美景无数！留下许多美好得回忆。
+<!-- more -->
+\[ngg\_images source=\\"galleries\\" container\_ids=\\"24\\" display\_type=\\"photocrati-nextgen\_basic\_slideshow\\" gallery\_width=\\"600\\" gallery\_height=\\"400\\" cycle\_effect=\\"shuffle\\" cycle\_interval=\\"10\\" show\_thumbnail\_link=\\"0\\" thumbnail\_link\_text=\\"\[显示缩略图\]\\" order\_by=\\"sortorder\\" order\_direction=\\"ASC\\" returns=\\"included\\" maximum\_entity\_count=\\"500\\"\]
