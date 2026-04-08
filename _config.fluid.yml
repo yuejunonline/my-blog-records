@@ -462,17 +462,31 @@ open_graph:
 # Footer
 #---------------------------
 footer:
-  # 页脚第一行文字的 HTML，建议保留 Fluid 的链接，用于向更多人推广本主题
-  # HTML of the first line of the footer, it is recommended to keep the Fluid link to promote this theme to more people
-  content: '
+  # 页脚第一行文字的 HTML
+  content: |
     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
     <i class="iconfont icon-love"></i>
-    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>跑路</span></a>
-  '
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+    <div style="font-size: 0.85rem; color: #718096; margin-top: 5px;">
+      <span>本站总访问量 </span><span id="global-count-value">...</span><span> 次</span>
+    </div>
+    <script>
+      (function() {
+        fetch('https://blog-counter.yuejunonline.workers.dev/')
+          .then(res => res.json())
+          .then(data => {
+            const el = document.getElementById('global-count-value');
+            if (el) el.innerText = data.count;
+          })
+          .catch(err => console.error('计数器加载失败:', err));
+      })();
+    </script>
 
-  # 展示网站的 PV、UV 统计数
-  # Display website PV and UV statistics
+  # 展示网站的 PV、UV 统计数（如果你用的是上面的自定义 Worker 计数，这里保持 false）
   statistics:
+    enable: false
+    source: "busuanzi"
+    statistics:
     enable: false
 
     # 统计数据来源，使用 leancloud, umami, openkounter 需要设置 `web_analytics` 中对应的参数；使用 busuanzi 不需要额外设置，但是有时不稳定，另外本地运行时 busuanzi 显示统计数据很大属于正常现象，部署后会正常
