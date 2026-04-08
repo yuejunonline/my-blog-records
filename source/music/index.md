@@ -29,7 +29,7 @@ layout: page
         artist: '周杰伦',
         url: 'https://music.friend8.online/2026/04/56f71d09c684877d7ef94553721e3151.mp3',
         cover: 'https://img.friend8.online/2026/04/0c0785fdfd16d21333bd9ac9beb890f0.jpg',
-        lrc: 'https://music.friend8.online/2026/04/362ae997f83e63656461a815d9afe5be.lrc'
+        lrc: 'https://music.friend8.online/2026/04/d454818cd6c25162d26bb37e81bbd30b.lrc'
       },
       {
         name: '第二首歌名',
