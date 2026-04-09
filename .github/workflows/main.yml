@@ -3,7 +3,7 @@ name: 部署博客到 GitHub Pages
 on:
   push:
     branches:
-      - main  # 触发条件：当你向 main 分支推送代码时
+      - main
 
 jobs:
   build-and-deploy:
@@ -11,29 +11,28 @@ jobs:
     steps:
       - name: 检出源码
         uses: actions/checkout@v3
-        with:
-          submodules: true 
 
-      - name: 安装 Node.js
+      - name: 设置 Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20' # 升级到稳定大版本 20，解决 ESM 兼容问题
 
-      - name: 安装依赖
+      - name: 强力安装依赖
         run: |
           npm install -g hexo-cli
-          npm install
+          rm -rf node_modules package-lock.json # 彻底清除本地上传的冲突文件
+          npm install --force
 
       - name: 生成网页
         run: |
           hexo clean
           hexo generate
 
-      - name: 彻底覆盖旧博客
+      - name: 强制覆盖旧博客
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: public
           repository-name: yuejunonline/yuejunonline.github.io
-          branch: master  # 你的旧仓库目前显示的分支是 master
-          token: ${{ secrets.BLOG_TOKEN }} # 这里的名字必须和你之前在 Settings 里存的 Secret 名字一模一样
+          branch: master
+          token: ${{ secrets.BLOG_TOKEN }}
           clean: true
