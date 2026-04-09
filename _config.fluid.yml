@@ -243,8 +243,6 @@ custom_css:
 # Analysis of website visitors
 web_analytics:
   enable: false
-  # 检查下面是否有 cloudflare 选项，并将你的 Token 填入
-  cloudflare: f366503af05e44f3862a6084bcdb8aed
   # 遵循访客浏览器"请勿追踪"的设置，如果开启则不统计其访问
   # Follow the "Do Not Track" setting of the visitor's browser
   # See: https://www.w3.org/TR/tracking-dnt/
@@ -1153,5 +1151,3 @@ static_prefix:
   hint: https://lib.baomitu.com/hint.css/2.7.0/
 
   moment: https://lib.baomitu.com/moment.js/2.29.4/
-custom_html: |
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f366503af05e44f3862a6084bcdb8aed"}'></script>
