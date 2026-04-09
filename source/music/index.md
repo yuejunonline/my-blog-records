@@ -25,8 +25,9 @@ header_style: |
 
     const ap = new APlayer({
       container: document.getElementById('aplayer'),
+      say: false,            // 成功隐藏控制台字符 Logo
+      autoplay: true,        // 开启自动播放
       fixed: false,
-      autoplay: false, 
       theme: '#12b7f5',
       loop: 'all',
       order: 'list',
@@ -44,22 +45,20 @@ header_style: |
           cover: 'https://img.friend8.online/2026/04/0c0785fdfd16d21333bd9ac9beb890f0.jpg',
           lrc: 'https://music.friend8.online/2026/04/d454818cd6c25162d26bb37e81bbd30b.lrc'
         },
-        { name: '待添加歌曲2', artist: '歌手2', url: '', cover: '', lrc: '' },
-        { name: '待添加歌曲3', artist: '歌手3', url: '', cover: '', lrc: '' },
-        { name: '待添加歌曲4', artist: '歌手4', url: '', cover: '', lrc: '' },
-        { name: '待添加歌曲5', artist: '歌手5', url: '', cover: '', lrc: '' },
-        { name: '待添加歌曲6', artist: '歌手6', url: '', cover: '', lrc: '' },
-        { name: '待添加歌曲7', artist: '歌手7', url: '', cover: '', lrc: '' },
-        { name: '待添加歌曲8', artist: '歌手8', url: '', cover: '', lrc: '' },
-        { name: '待添加歌曲9', artist: '歌手9', url: '', cover: '', lrc: '' },
-        { name: '待添加歌曲10', artist: '歌手10', url: '', cover: '', lrc: '' }
+        { name: '歌曲2', artist: '歌手2', url: '', cover: '', lrc: '' },
+        { name: '歌曲3', artist: '歌手3', url: '', cover: '', lrc: '' },
+        { name: '歌曲4', artist: '歌手4', url: '', cover: '', lrc: '' },
+        { name: '歌曲5', artist: '歌手5', url: '', cover: '', lrc: '' },
+        { name: '歌曲6', artist: '歌手6', url: '', cover: '', lrc: '' },
+        { name: '歌曲7', artist: '歌手7', url: '', cover: '', lrc: '' },
+        { name: '歌曲8', artist: '歌手8', url: '', cover: '', lrc: '' },
+        { name: '歌曲9', artist: '歌手9', url: '', cover: '', lrc: '' },
+        { name: '歌曲10', artist: '歌手10', url: '', cover: '', lrc: '' }
       ]
     });
 
     const banner = document.querySelector('.banner'); 
-
     if (banner) {
-      // 播放时变模糊并切换当前封面
       ap.on('play', () => {
         const currentCover = ap.list.audios[ap.list.index].cover;
         if (currentCover) {
@@ -67,8 +66,6 @@ header_style: |
           banner.style.filter = 'blur(20px)'; 
         }
       });
-
-      // 换歌时同步封面
       ap.on('listswitch', ({index}) => {
         if (banner.style.filter.includes('blur')) {
           const currentCover = ap.list.audios[index].cover;
