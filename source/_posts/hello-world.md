@@ -1,6 +1,8 @@
 ---
 title: Hello World
-date: 2026-03-30 08:50:02
+date: 2026-03-30
+comments: true
+index_img: /img/default.png  # 随便写一个占位，确保头部格式完整
 ---
 Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
