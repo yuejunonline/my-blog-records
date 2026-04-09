@@ -8,11 +8,24 @@ index_img: https://img.friend8.online/2026/04/2fbb7f6dedf6df1f5d862edeea73298f.j
 comments: true
 header_style: |
   .banner {
-    transition: background-image 0.8s ease-in-out, filter 0.8s ease-in-out !important;
+    /* ✨ 核心：将过渡时间延长至 3.5s，并使用更柔和的贝塞尔曲线 */
+    transition: background-image 3.5s cubic-bezier(0.45, 0.05, 0.55, 0.95), filter 3.5s ease-in-out !important;
     background-size: cover !important;
     background-position: center !important;
   }
 ---
+
+<script>
+  (function() {
+    var origLog = window.console.log;
+    window.console.log = function() {
+      if (arguments[0] && typeof arguments[0] === 'string' && (arguments[0].indexOf('APlayer') !== -1 || arguments[0].indexOf('%c') !== -1)) {
+        return;
+      }
+      origLog.apply(window.console, arguments);
+    };
+  })();
+</script>
 
 <div id="aplayer" style="margin: 20px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-width: 800px;"></div>
 
@@ -23,43 +36,48 @@ header_style: |
       return;
     }
 
-    const ap = new APlayer({
+    var audioList = [
+      {
+        name: '蒲公英的约定',
+        artist: '周杰伦',
+        url: 'https://music.friend8.online/2026/04/56f71d09c684877d7ef94553721e3151.mp3',
+        cover: 'https://img.friend8.online/2026/04/0c0785fdfd16d21333bd9ac9beb890f0.jpg',
+        lrc: 'https://music.friend8.online/2026/04/d454818cd6c25162d26bb37e81bbd30b.lrc'
+      },
+      { name: '待添加2', artist: '歌手2', url: '', cover: '', lrc: '' },
+      { name: '待添加3', artist: '歌手3', url: '', cover: '', lrc: '' },
+      { name: '待添加4', artist: '歌手4', url: '', cover: '', lrc: '' },
+      { name: '待添加5', artist: '歌手5', url: '', cover: '', lrc: '' }
+    ];
+
+    var validAudio = audioList.filter(function(item) {
+      return item.url && item.url.trim() !== '';
+    });
+
+    var ap = new APlayer({
       container: document.getElementById('aplayer'),
       say: false,
-      autoplay: true, // 保持开启，浏览器能放就放，不能放就等点击
+      autoplay: false,
       theme: '#12b7f5',
       lrcType: 3,
       listMaxHeight: '500px',
-      audio: [
-        {
-          name: '蒲公英的约定',
-          artist: '周杰伦',
-          url: 'https://music.friend8.online/2026/04/56f71d09c684877d7ef94553721e3151.mp3',
-          cover: 'https://img.friend8.online/2026/04/0c0785fdfd16d21333bd9ac9beb890f0.jpg',
-          lrc: 'https://music.friend8.online/2026/04/d454818cd6c25162d26bb37e81bbd30b.lrc'
-        },
-        { name: '待添加2', artist: '歌手2', url: '', cover: '', lrc: '' },
-        { name: '待添加3', artist: '歌手3', url: '', cover: '', lrc: '' },
-        { name: '待添加4', artist: '歌手4', url: '', cover: '', lrc: '' },
-        { name: '待添加5', artist: '歌手5', url: '', cover: '', lrc: '' },
-        { name: '待添加6', artist: '歌手6', url: '', cover: '', lrc: '' },
-        { name: '待添加7', artist: '歌手7', url: '', cover: '', lrc: '' },
-        { name: '待添加8', artist: '歌手8', url: '', cover: '', lrc: '' },
-        { name: '待添加9', artist: '歌手9', url: '', cover: '', lrc: '' },
-        { name: '待添加10', artist: '歌手10', url: '', cover: '', lrc: '' }
-      ]
+      audio: validAudio
     });
 
-    const banner = document.querySelector('.banner'); 
+    var banner = document.querySelector('.banner');
     if (banner) {
-      // ✨ 核心逻辑：
-      // 进站自动播放时（无论成功还是报错），我们都不去动背景。
-      // 只有当用户执行了“切歌”动作，才开始变模糊。
-      ap.on('listswitch', ({index}) => {
-        const currentCover = ap.list.audios[index].cover;
+      ap.on('play', function() {
+        var currentCover = ap.list.audios[ap.list.index].cover;
         if (currentCover) {
-          banner.style.backgroundImage = `url("${currentCover}")`;
-          banner.style.filter = 'blur(20px)'; 
+          banner.style.backgroundImage = 'url("' + currentCover + '")';
+          banner.style.filter = 'blur(10px)'; 
+        }
+      });
+
+      ap.on('listswitch', function(data) {
+        var currentCover = ap.list.audios[data.index].cover;
+        if (currentCover) {
+          banner.style.backgroundImage = 'url("' + currentCover + '")';
         }
       });
     }

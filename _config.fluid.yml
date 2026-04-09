@@ -486,7 +486,7 @@ footer:
           .catch(err => console.error(err));
       })();
     </script>
-    # 展示网站的 PV、UV 统计数（如果你用的是上面的自定义 Worker 计数，这里保持 false）
+  # 展示网站的 PV、UV 统计数（如果你用的是上面的自定义 Worker 计数，这里保持 false）
   statistics:
     enable: false
     source: "busuanzi"
