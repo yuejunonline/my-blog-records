@@ -387,7 +387,8 @@ navbar:
     - { key: "category", name: "Category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", name: "Tags", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "about", name: "About", link: "/about/", icon: "iconfont icon-user-fill" }
-    #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
+    - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
+    - { key: "跟打练习", link: "https://type-words-omega.vercel.app/", icon: "iconfont icon-keyboard-fill" }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
 # Search feature, based on hexo-generator-search. If you have installed other search plugins, please disable this feature to avoid generating redundant index files
@@ -590,7 +591,9 @@ post:
   banner_img: /img/default.png
   banner_img_height: 70
   banner_mask_alpha: 0.3
-
+  comments:
+    enable: true
+    type: giscus
   # 文章在首页的默认封面图，当没有指定 index_img 时会使用该图片，若两者都为空则不显示任何图片
   # Path of the default post cover when `index_img` is not set. If both are empty, no image will be displayed
   default_index_img:
@@ -780,24 +783,18 @@ post:
     # See: http://mermaid-js.github.io/mermaid/
     options: { theme: 'default' }
 
-  # 评论插件
-  # Comment plugin
-  comments:
-    enable: true
-    # 指定的插件，需要同时设置对应插件的必要参数
-    # The specified plugin needs to set the necessary parameters at the same time
-    # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
-    type: disqus
-
-
-#---------------------------
-# 评论插件
-# Comment plugins
-#
-# 开启评论需要先设置上方 `post: comments: enable: true`，然后根据 `type` 设置下方对应的评论插件参数
-# Enable comments need to be set `post: comments: enable: true`, then set the corresponding comment plugin parameters below according to `type`
-#---------------------------
-
+giscus:
+  repo: yuejunonline/my-blog-records
+  repo_id: R_kgDOR1mOGg
+  category: Announcements
+  category_id: DIC_kwDOR1mOGs4C6bWk
+  mapping: pathname
+  strict: 0
+  reactions_enabled: 1
+  emit_metadata: 0
+  input_position: bottom
+  theme: preferred_color_scheme
+  lang: zh-CN
 # Utterances
 # 基于 GitHub Issues
 # Based on GitHub Issues
@@ -932,19 +929,6 @@ cusdis:
 # 基于 GitHub Discussions，类似于 Utterances
 # Based on GitHub Discussions, similar to Utterances
 # See: https://giscus.app/
-giscus:
-  repo:
-  repo-id:
-  category:
-  category-id:
-  theme-light: light
-  theme-dark: dark
-  mapping: pathname
-  reactions-enabled: 1
-  emit-metadata: 0
-  input-position: top
-  lang: zh-CN
-
 # Discuss
 # 多平台、多数据库、自托管、免费开源评论系统
 # Self-hosted, small size, multi-platform, multi-database, free and open source commenting system
@@ -1101,11 +1085,11 @@ links:
   # 评论插件
   # Comment plugin
   comments:
-    enable: false
+    enable: true
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
-    type: disqus
+    type: giscus
 
 
 #---------------------------
