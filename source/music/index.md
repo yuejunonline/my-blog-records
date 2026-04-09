@@ -17,27 +17,27 @@ header_style: |
 <div id="aplayer" style="margin: 20px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-width: 800px;"></div>
 
 <script>
+  // 🚀 核心：抢在播放器加载前拦截控制台
+  (function() {
+    const origLog = window.console.log;
+    window.console.log = function(...args) {
+      if (args[0] && typeof args[0] === 'string' && (args[0].includes('APlayer') || args[0].includes('v1.'))) {
+        return; 
+      }
+      origLog.apply(window.console, args);
+    };
+  })();
+
   function initAPlayer() {
     if (typeof APlayer === 'undefined') {
       setTimeout(initAPlayer, 100);
       return;
     }
 
-    // ✨ 拦截 APlayer 控制台 Logo 输出
-    try {
-      const origLog = window.console.log;
-      window.console.log = function(...args) {
-        if (args[0] && typeof args[0] === 'string' && (args[0].includes('APlayer') || args[0].includes('v1.'))) {
-          return; 
-        }
-        origLog.apply(window.console, args);
-      };
-    } catch (e) {}
-
     const ap = new APlayer({
       container: document.getElementById('aplayer'),
-      say: false,            // 基础关闭开关
-      autoplay: true,        // 开启自动播放
+      say: false,            // 官方关闭开关
+      autoplay: true,        // 自动播放
       fixed: false,
       theme: '#12b7f5',
       loop: 'all',
@@ -70,7 +70,9 @@ header_style: |
 
     const banner = document.querySelector('.banner'); 
     if (banner) {
-      // 播放时自动背景变模糊
+      // 进站时：默认背景由 Fluid 设置，没有 filter 样式，是清晰的
+
+      // 事件监听：一旦播放，开启模糊
       ap.on('play', () => {
         const currentCover = ap.list.audios[ap.list.index].cover;
         if (currentCover) {
@@ -78,13 +80,13 @@ header_style: |
           banner.style.filter = 'blur(20px)'; 
         }
       });
-      // 切换歌曲时同步封面
+
+      // 切换歌曲：如果是切歌，持续应用模糊背景
       ap.on('listswitch', ({index}) => {
-        if (banner.style.filter.includes('blur')) {
-          const currentCover = ap.list.audios[index].cover;
-          if (currentCover) {
-            banner.style.backgroundImage = `url("${currentCover}")`;
-          }
+        const currentCover = ap.list.audios[index].cover;
+        if (currentCover) {
+          banner.style.backgroundImage = `url("${currentCover}")`;
+          banner.style.filter = 'blur(20px)'; 
         }
       });
     }
