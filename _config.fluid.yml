@@ -469,23 +469,6 @@ footer:
       <i class="iconfont icon-love" style="color: #ff5252;"></i>
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
     </div>
-    <div style="display: inline-flex; align-items: center; padding: 4px 12px; background: rgba(0,0,0,0.05); border-radius: 50px; font-size: 0.8rem; color: #555;">
-      <i class="iconfont icon-eye" style="margin-right: 6px;"></i>
-      <span>访问量 </span>
-      <span id="global-count-value" style="font-weight: bold; margin-left: 5px; color: #30a9de;">...</span>
-      <span style="margin-left: 3px;">次</span>
-    </div>
-    <script>
-      (function() {
-        fetch('https://blog-counter.yuejunonline.workers.dev/')
-          .then(res => res.json())
-          .then(data => {
-            const el = document.getElementById('global-count-value');
-            if (el) el.innerText = data.count;
-          })
-          .catch(err => console.error(err));
-      })();
-    </script>
   # 展示网站的 PV、UV 统计数（如果你用的是上面的自定义 Worker 计数，这里保持 false）
   statistics:
     enable: false
