@@ -6,6 +6,12 @@ banner_img_height: 60
 banner_mask_alpha: 0.5
 index_img: https://img.friend8.online/2026/04/2fbb7f6dedf6df1f5d862edeea73298f.jpg
 comments: true
+header_style: |
+  .banner {
+    transition: background-image 0.8s ease-in-out, filter 0.8s ease-in-out !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
 ---
 
 <div id="aplayer" style="margin: 20px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-width: 800px;"></div>
@@ -16,10 +22,11 @@ comments: true
       setTimeout(initAPlayer, 100);
       return;
     }
-    new APlayer({
+
+    const ap = new APlayer({
       container: document.getElementById('aplayer'),
       fixed: false,
-      autoplay: false,
+      autoplay: false, 
       theme: '#12b7f5',
       loop: 'all',
       order: 'list',
@@ -43,23 +50,32 @@ comments: true
           url: '',
           cover: '',
           lrc: ''
-        },
-        {
-          name: '待添加歌曲3',
-          artist: '歌手名',
-          url: '',
-          cover: '',
-          lrc: ''
-        },
-        {
-          name: '待添加歌曲4',
-          artist: '歌手名',
-          url: '',
-          cover: '',
-          lrc: ''
         }
       ]
     });
+
+    const banner = document.querySelector('.banner'); 
+
+    if (banner) {
+      // 核心：点击播放才开始变模糊
+      ap.on('play', () => {
+        const currentCover = ap.list.audios[ap.list.index].cover;
+        if (currentCover) {
+          banner.style.backgroundImage = `url("${currentCover}")`;
+          banner.style.filter = 'blur(20px)'; 
+        }
+      });
+
+      // 核心：换歌时同步封面
+      ap.on('listswitch', ({index}) => {
+        if (banner.style.filter.includes('blur')) {
+          const currentCover = ap.list.audios[index].cover;
+          if (currentCover) {
+            banner.style.backgroundImage = `url("${currentCover}")`;
+          }
+        }
+      });
+    }
   }
   initAPlayer();
 </script>
