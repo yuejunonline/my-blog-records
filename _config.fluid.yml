@@ -486,8 +486,7 @@ footer:
           .catch(err => console.error(err));
       })();
     </script>
-    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f366503af05e44f3862a6084bcdb8aed"}'></script><!-- End Cloudflare Web Analytics -->
-  # 展示网站的 PV、UV 统计数（如果你用的是上面的自定义 Worker 计数，这里保持 false）
+    # 展示网站的 PV、UV 统计数（如果你用的是上面的自定义 Worker 计数，这里保持 false）
   statistics:
     enable: false
     source: "busuanzi"
