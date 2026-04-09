@@ -242,8 +242,9 @@ custom_css:
 # 网页访问统计
 # Analysis of website visitors
 web_analytics:
-  enable: false
-
+  enable: true
+  # 检查下面是否有 cloudflare 选项，并将你的 Token 填入
+  cloudflare: f366503af05e44f3862a6084bcdb8aed
   # 遵循访客浏览器"请勿追踪"的设置，如果开启则不统计其访问
   # Follow the "Do Not Track" setting of the visitor's browser
   # See: https://www.w3.org/TR/tracking-dnt/
