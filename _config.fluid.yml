@@ -387,7 +387,7 @@ navbar:
     - { key: "music", name: "音乐", link: "/music/", icon: "iconfont icon-music" }
     - { key: "Type Words", name: "打字机", link: "https://type-words-omega.vercel.app/", icon: "iconfont icon-keyboard-fill" }
     - { key: "about", name: "关于", link: "/about/", icon: "iconfont icon-user-fill" }
-    - { key: "links", name: "友联" link: "/links/", icon: "iconfont icon-link-fill" } 
+    - { key: "links", name: "友联", link: "/links/", icon: "iconfont icon-link-fill" } 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
 # Search feature, based on hexo-generator-search. If you have installed other search plugins, please disable this feature to avoid generating redundant index files
 search:
