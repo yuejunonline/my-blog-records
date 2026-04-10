@@ -12,13 +12,13 @@ comments: true
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
 
 <style>
-  /* 确保 Banner 区域支持相对定位（仅当原本为 static 时） */
+  /* 确保 Banner 区域支持过渡层绝对定位，但不干扰内部文字布局 */
   .banner {
     position: relative !important;
     overflow: hidden;
   }
   
-  /* 过渡层：实现毛玻璃+缩放效果，但绝不干扰文字层级 */
+  /* 过渡层：实现毛玻璃+缩放效果，z-index 保持最低，绝不遮盖标题 */
   .banner-transition-overlay {
     position: absolute;
     top: 0;
@@ -29,7 +29,7 @@ comments: true
     background-position: center !important;
     background-repeat: no-repeat !important;
     pointer-events: none;
-    z-index: 1;          /* 低于原 Banner 内容的 z-index，避免遮盖文字 */
+    z-index: 1;           /* 低于所有 Banner 原有内容（标题、遮罩等） */
     opacity: 1;
     filter: blur(0px) scale(1);
     transition: all 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -42,13 +42,8 @@ comments: true
     opacity: 0;
   }
   
-  /* 确保 Banner 内的原有内容（标题、遮罩等）位于过渡层之上 */
-  .banner .container, 
-  .banner .banner-mask,
-  .banner > *:not(.banner-transition-overlay) {
-    position: relative;
-    z-index: 10;
-  }
+  /* 关键：不再对 .banner .container 等做任何 position/z-index 覆盖，让主题原有样式生效 */
+  /* 这样标题就会按照主题默认布局居中显示，不会跑到导航栏上方 */
   
   /* 播放器卡片样式（仅美化，不改变主题色） */
   #aplayer {
@@ -135,7 +130,6 @@ comments: true
     // 读取 Banner 当前的背景尺寸和位置（保证封面图与原图显示一致）
     let bgSize = getComputedStyle(banner).backgroundSize;
     let bgPosition = getComputedStyle(banner).backgroundPosition;
-    // 如果主题未定义，使用默认 cover 和 center
     if (bgSize === 'auto' || bgSize === 'auto auto') bgSize = 'cover';
     if (bgPosition === '0% 0%' || bgPosition === 'auto') bgPosition = 'center';
     
@@ -146,7 +140,6 @@ comments: true
       overlay.className = 'banner-transition-overlay';
       banner.appendChild(overlay);
     }
-    // 将过渡层的背景样式与 Banner 统一
     overlay.style.backgroundSize = bgSize;
     overlay.style.backgroundPosition = bgPosition;
     
@@ -211,7 +204,7 @@ comments: true
     ap = new APlayer({
       container: container,
       autoplay: false,
-      theme: '#12b7f5',   // 恢复原本的蓝色主题
+      theme: '#12b7f5',
       lrcType: 3,
       listMaxHeight: '450px',
       audio: songs.map(s => ({
