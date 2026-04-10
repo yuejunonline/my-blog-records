@@ -3,7 +3,7 @@ title: 关于我
 date: 2026-03-30 12:00:00
 layout: about
 banner_img_height: 60
-banner_mask_alpha: 0.5
+banner_mask_alpha: 0.3
 ---
 
 欢迎你的访问：
