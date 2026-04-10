@@ -1,5 +1,5 @@
 ---
-title: 音乐空间1
+title: 音乐空间
 layout: page
 banner_img: https://img.friend8.online/2026/04/2fbb7f6dedf6df1f5d862edeea73298f.jpg
 banner_img_height: 60
@@ -7,43 +7,42 @@ banner_mask_alpha: 0.5
 index_img: https://img.friend8.online/2026/04/2fbb7f6dedf6df1f5d862edeea73298f.jpg
 comments: true
 ---
-11
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
 
 <style>
-  /* 保证 Banner 区域支持相对定位和溢出隐藏 */
+  /* 确保 Banner 区域支持相对定位（仅当原本为 static 时） */
   .banner {
     position: relative !important;
     overflow: hidden;
-    transition: filter 0.3s ease;
   }
   
-  /* 过渡层：实现毛玻璃 + 缩放的高级幻灯片效果 */
+  /* 过渡层：实现毛玻璃+缩放效果，但绝不干扰文字层级 */
   .banner-transition-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
     pointer-events: none;
-    z-index: 5;
+    z-index: 1;          /* 低于原 Banner 内容的 z-index，避免遮盖文字 */
     opacity: 1;
     filter: blur(0px) scale(1);
     transition: all 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: opacity, filter, transform;
   }
   
-  /* 当过渡层处于“退出”状态时，模糊+放大+淡出 (旧图远去效果) */
+  /* 退出效果：模糊+放大+淡出 */
   .banner-transition-overlay.exit-effect {
     filter: blur(30px) scale(1.08);
     opacity: 0;
   }
   
-  /* 保证 Banner 内的文字、遮罩等位于过渡层之上 */
+  /* 确保 Banner 内的原有内容（标题、遮罩等）位于过渡层之上 */
   .banner .container, 
   .banner .banner-mask,
   .banner > *:not(.banner-transition-overlay) {
@@ -51,35 +50,26 @@ comments: true
     z-index: 10;
   }
   
-  /* 播放器卡片美化 */
+  /* 播放器卡片样式（仅美化，不改变主题色） */
   #aplayer {
     margin: 30px auto;
-    border-radius: 20px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
-    max-width: 880px;
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(8px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
   }
-  .aplayer {
-    background: transparent !important;
-    font-family: inherit;
+  /* 强制 APlayer 主题色为原本的 #12b7f5 */
+  .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+    background-color: #12b7f5 !important;
   }
-  .aplayer .aplayer-info {
-    background: rgba(0,0,0,0.65) !important;
+  .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon path {
+    fill: #12b7f5 !important;
   }
-  .aplayer .aplayer-pic {
-    border-radius: 12px !important;
+  .aplayer .aplayer-list ol li.aplayer-list-light {
+    background: #e9f5ff !important;
   }
-  .aplayer .aplayer-lrc {
-    background: rgba(0,0,0,0.6) !important;
-    color: #f0f0f0;
-  }
-  .aplayer .aplayer-lrc p.aplayer-lrc-current {
-    color: #7bcbff !important;
-  }
-  .aplayer-list ol li:hover {
-    background: rgba(90, 150, 220, 0.3) !important;
+  .aplayer .aplayer-list ol li.aplayer-list-light span {
+    color: #12b7f5 !important;
   }
 </style>
 
@@ -87,7 +77,7 @@ comments: true
 
 <script>
   (function() {
-    // ---------- 歌曲数据（可自由增删，无效 url 自动过滤）----------
+    // ---------- 歌曲数据 ----------
     const rawSongs = [
       {
         name: '蒲公英的约定',
@@ -103,7 +93,7 @@ comments: true
         cover: 'https://img.friend8.online/2026/04/cb5de8ccd54c90033a1cfb222718f0f1.jpg',
         lrc: ''
       },
-      // 以下为占位示例（无真实链接会自动隐藏）
+      // 占位歌曲（无真实链接会自动过滤）
       { name: '夜曲', artist: '周杰伦', url: '', cover: '', lrc: '' },
       { name: '山海', artist: '草东没有派对', url: '', cover: '', lrc: '' },
       { name: '平凡之路', artist: '朴树', url: '', cover: '', lrc: '' }
@@ -131,27 +121,39 @@ comments: true
       }
     });
 
-    // ---------- 获取 Banner 并注入过渡层 ----------
+    // ---------- 获取 Banner 并保留其原始背景样式 ----------
     const banner = document.querySelector('.banner');
     if (!banner) {
       console.warn('未找到 .banner 元素，请检查主题');
       return;
     }
+    // 确保 Banner 为相对定位（用于过渡层绝对定位）
     if (getComputedStyle(banner).position === 'static') {
       banner.style.position = 'relative';
     }
     
+    // 读取 Banner 当前的背景尺寸和位置（保证封面图与原图显示一致）
+    let bgSize = getComputedStyle(banner).backgroundSize;
+    let bgPosition = getComputedStyle(banner).backgroundPosition;
+    // 如果主题未定义，使用默认 cover 和 center
+    if (bgSize === 'auto' || bgSize === 'auto auto') bgSize = 'cover';
+    if (bgPosition === '0% 0%' || bgPosition === 'auto') bgPosition = 'center';
+    
+    // 创建过渡层
     let overlay = banner.querySelector('.banner-transition-overlay');
     if (!overlay) {
       overlay = document.createElement('div');
       overlay.className = 'banner-transition-overlay';
       banner.appendChild(overlay);
     }
+    // 将过渡层的背景样式与 Banner 统一
+    overlay.style.backgroundSize = bgSize;
+    overlay.style.backgroundPosition = bgPosition;
     
-    // 初始化 Banner 背景
+    // 初始化 Banner 背景（使用 Front-matter 中的图片）
     banner.style.backgroundImage = `url("${DEFAULT_BANNER}")`;
-    banner.style.backgroundSize = 'cover';
-    banner.style.backgroundPosition = 'center';
+    banner.style.backgroundSize = bgSize;
+    banner.style.backgroundPosition = bgPosition;
     overlay.style.backgroundImage = 'none';
     overlay.classList.remove('exit-effect');
     
@@ -168,20 +170,20 @@ comments: true
       
       // 1. 将过渡层背景设置为当前 Banner 正在显示的图片（旧图）
       overlay.style.backgroundImage = banner.style.backgroundImage;
-      // 2. 移除可能残留的退出效果类，重置样式
+      // 2. 移除退出效果类，重置状态
       overlay.classList.remove('exit-effect');
-      // 强制重绘，确保过渡层可见且无模糊
+      // 强制重绘
       void overlay.offsetHeight;
       
-      // 3. 将 Banner 本身的背景更换为新图（此时被过渡层完全遮住）
+      // 3. 更换 Banner 本身的背景为新图（此时被过渡层完全遮住）
       banner.style.backgroundImage = `url("${targetUrl}")`;
       
-      // 4. 在下一帧添加退出效果类：触发 3.5 秒的模糊 + 放大 + 淡出动画
+      // 4. 下一帧添加退出效果类：触发 3.5 秒的模糊 + 放大 + 淡出动画
       requestAnimationFrame(() => {
         overlay.classList.add('exit-effect');
       });
       
-      // 5. 动画结束后清理过渡层背景并重置标志
+      // 5. 动画结束后清理过渡层背景
       const onFinish = () => {
         overlay.style.backgroundImage = '';
         overlay.classList.remove('exit-effect');
@@ -201,7 +203,7 @@ comments: true
       }, 3600);
     }
     
-    // ---------- 初始化 APlayer ----------
+    // ---------- 初始化 APlayer（主题色恢复 #12b7f5）----------
     let ap;
     const container = document.getElementById('aplayer');
     if (!container) return;
@@ -209,7 +211,7 @@ comments: true
     ap = new APlayer({
       container: container,
       autoplay: false,
-      theme: '#3b82f6',
+      theme: '#12b7f5',   // 恢复原本的蓝色主题
       lrcType: 3,
       listMaxHeight: '450px',
       audio: songs.map(s => ({
@@ -221,7 +223,7 @@ comments: true
       }))
     });
     
-    // 监听列表切换（点击任意歌曲、上下曲）→ 更换 Banner
+    // 监听列表切换 → 更换 Banner 封面
     ap.on('listswitch', (data) => {
       if (data && data.index !== undefined && ap.list.audios[data.index]) {
         const newCover = ap.list.audios[data.index].cover;
@@ -253,9 +255,3 @@ comments: true
     setTimeout(fixBrokenCovers, 500);
   })();
 </script>
-
-<!-- 如果希望尝试百叶窗效果，可将上述 switchBannerTo 替换为下方的备选代码（取消注释并注释原函数） -->
-<!-- 
-百叶窗效果（简单实现）：需要多个条状层，这里提供一个示意，由于复杂性较高且兼容性一般，建议使用上方毛玻璃缩放效果。
-如需真正的百叶窗，可以使用 CSS Grid 或 flex 生成多个 div，通过动画控制每个条的 opacity/transform。但会显著增加代码量。
--->
