@@ -494,7 +494,7 @@ footer:
 index:
   # 首页 Banner 头图，可以是相对路径或绝对路径，以下相同
   # 后面是默认的图片地址，我现在采用网络API获取随机图片，这里地址就移除了。/img/default.png
-  banner_img: https://picsum.photos/1920/1080
+  banner_img: https://api.dujin.org/bing/1920.php
   # 头图高度，屏幕百分比
   # Height ratio of banner image
   # Available: 0 - 100
@@ -918,7 +918,7 @@ discuss:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: /img/default.png
+  banner_img: https://api.dujin.org/bing/1920.php
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -929,7 +929,7 @@ archive:
 #---------------------------
 category:
   enable: true
-  banner_img: /img/default.png
+  banner_img: https://api.dujin.org/bing/1920.php
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -958,7 +958,7 @@ category:
 #---------------------------
 tag:
   enable: true
-  banner_img: /img/default.png
+  banner_img: https://api.dujin.org/bing/1920.php
   banner_img_height: 60
   banner_mask_alpha: 0.3
   tagcloud:
@@ -975,7 +975,7 @@ tag:
 #---------------------------
 about:
   enable: true
-  banner_img: /img/default.png
+  banner_img: https://api.dujin.org/bing/1920.php
   banner_img_height: 60
   banner_mask_alpha: 0.3
   avatar: /img/psc.jpg
