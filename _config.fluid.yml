@@ -82,6 +82,7 @@ code:
 fun_features:
   # 为 subtitle 添加打字机效果
   # Typing animation for subtitle
+  
   typing:
     enable: true
 
@@ -241,6 +242,15 @@ custom_css:
 - 'https://music.friend8.online/APlayer.min.css'
 # 网页访问统计
 # Analysis of website visitors
+# 鼠标点击特效
+click_effect:
+  enable: true
+  mode: 'fireworks'
+  text:
+    - '富强'
+    - '民主'
+    - '文明'
+    - '和谐'
 web_analytics:
   enable: false
   # 遵循访客浏览器"请勿追踪"的设置，如果开启则不统计其访问

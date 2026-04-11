@@ -31,5 +31,8 @@
   },
   "peerDependencies": {
     "nunjucks": "^3.0.0"
+  },
+  "dependencies": {
+    "hexo-theme-fluid": "^1.9.9"
   }
 }
