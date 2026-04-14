@@ -88,8 +88,13 @@ comments: true
         cover: 'https://img.friend8.online/2026/04/cb5de8ccd54c90033a1cfb222718f0f1.jpg',
         lrc: ''
       },
+      
+      { name: 'Давай за',
+        artist: '柳拜乐队',
+        url: 'https://music.friend8.online/2026/04/b59e82ab925b1721e64df1cd79279708.mp3', 
+        cover: 'https://img.friend8.online/2026/04/f6358dfd2393df34307939060e956a17.jpg', lrc: ''
+      },
       // 占位歌曲（无真实链接会自动过滤）
-      { name: '夜曲', artist: '周杰伦', url: '', cover: '', lrc: '' },
       { name: '山海', artist: '草东没有派对', url: '', cover: '', lrc: '' },
       { name: '平凡之路', artist: '朴树', url: '', cover: '', lrc: '' }
     ];
