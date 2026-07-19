@@ -41,4 +41,4 @@ jobs:
           repository-name: yuejunonline/yuejunonline.github.io
           branch: master
           token: ${{ secrets.BLOG_TOKEN }}
-          clean: true
+          clean: false
