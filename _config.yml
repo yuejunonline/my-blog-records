@@ -100,8 +100,10 @@ theme: fluid
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: ''
+# deploy:
+#  type: git
+#  repo: git@github.com:yuejunonline/my-blog-records.git
+#  branch: main
 # Fluid 配置文件覆盖功能
 fluid:
   _overwrite: true
