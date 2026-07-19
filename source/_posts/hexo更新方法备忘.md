@@ -1,12 +1,12 @@
 ---
 title: Hexo 独立博客多端同步与全自动更新备忘录
 date: 2026-07-19 23:30:00
-tags:
-  - Hexo
-  - 博客建站
-  - 备忘
 categories:
-  - 技术随笔
+  - [建站笔记, Hexo]
+tags:
+  - 博客维护
+  - Git
+  - 自动化
 index_img: /img/featured.jpg
 ---
 
