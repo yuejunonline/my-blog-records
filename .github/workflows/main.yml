@@ -15,20 +15,26 @@ jobs:
       - name: 设置 Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20' # 升级到稳定大版本 20，解决 ESM 兼容问题
+          node-version: '20'
 
-      - name: 强力安装依赖
+      - name: 缓存依赖项
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: 安全安装博客依赖
         run: |
-          npm install -g hexo-cli
-          rm -rf node_modules package-lock.json # 彻底清除本地上传的冲突文件
-          npm install --force
+          npm install
 
-      - name: 生成网页
+      - name: 编译生成静态网页
         run: |
-          hexo clean
-          hexo generate
+          npx hexo clean
+          npx hexo generate
 
-      - name: 强制覆盖旧博客
+      - name: 强制覆盖并发布到博客
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: public
