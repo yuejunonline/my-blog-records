@@ -1,5 +1,5 @@
 ---
-title: Hexo 独立博客多端同步与全自动更新备忘录
+title: Hexo 我的Hexo博客多端同步与全自动更新备忘录
 date: 2026-07-19 23:30:00
 categories:
   - [建站笔记, Hexo]
