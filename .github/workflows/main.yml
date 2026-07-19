@@ -42,3 +42,4 @@ jobs:
           branch: master
           token: ${{ secrets.BLOG_TOKEN }}
           clean: true
+ 
