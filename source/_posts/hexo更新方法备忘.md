@@ -7,7 +7,7 @@ tags:
   - 博客维护
   - Git
   - 自动化
-index_img: /img/featured.jpg
+index_img: https://img.magnific.com/free-vector/content-management-system-concept-flat-design_23-2148818338.jpg
 ---
 
 这是一篇写给自己的 Hexo 博客日常更新与维护指南。当前博客已彻底理顺基于 **GitHub Actions（源码同步部署）** 与 **SSH 免密密钥** 的多端全自动流，后续在任何电脑上更新均需严格遵循以下规范。
