@@ -7,7 +7,7 @@ tags:
   - 博客维护
   - Git
   - 自动化
-password: 5263398  # ⬅️ 只需要直接加上这一行
+password: '5263398'  # ⬅️ 只需要直接加上这一行
 abstract: 这是一篇受密码保护的文章，请输入密码继续阅读。 # 自定义未解密时的预览摘要
 message: 欢迎来到秘密花园，请输入访问密码： # 自定义输入框上方的提示语
 index_img: https://img.magnific.com/free-vector/content-management-system-concept-flat-design_23-2148818338.jpg
