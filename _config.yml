@@ -110,5 +110,3 @@ fluid:
 aplayer:
   meting: true
   asset_inject: true
-encrypt:
-  enable: true
