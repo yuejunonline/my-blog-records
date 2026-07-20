@@ -71,5 +71,7 @@ git push origin main
 * **现代网页排版习惯**：写作时**首行彻底顶格，绝对不要敲空格缩进**。段落与段落之间直接敲**两次回车（留出一个完整空行）**，Hexo 会自动将其渲染为最舒适的现代网页段落块间距。
 * **中英文混排规范**：在中文和英文（或数字、加粗 `**` 标签）之间，手动敲一个**半角空格**（例如：使用 Hexo 博客，而不是使用Hexo博客），能让整篇日记的排版视觉瞬间提升档次。
 * **本地的环境搭建**：记得使用
-* ```git clone https://github.com/yuejunonline/my-blog-records.git myblog```
+```bash
+git clone https://github.com/yuejunonline/my-blog-records.git myblog
+```
 
