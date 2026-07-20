@@ -7,7 +7,7 @@ tags:
   - 博客维护
   - Git
   - 自动化
-index_img: https://img.friend8.online/2026/07/36c0a41a52d3738ed85bf3b96eb6d40b.png
+index_img: https://img.magnific.com/free-vector/content-management-system-concept-flat-design_23-2148818338.jpg
 ---
 
 这是一篇写给自己的 Hexo 博客日常更新与维护指南。当前博客已彻底理顺基于 **GitHub Actions（源码同步部署）** 与 **SSH 免密密钥** 的多端全自动流，后续在任何电脑上更新均需严格遵循以下规范。
@@ -72,6 +72,6 @@ git push origin main
 * **中英文混排规范**：在中文和英文（或数字、加粗 `**` 标签）之间，手动敲一个**半角空格**（例如：使用 Hexo 博客，而不是使用Hexo博客），能让整篇日记的排版视觉瞬间提升档次。
 * **本地的环境搭建**：记得使用
 ```bash
-git clone https://github.com/***/my-blog-records.git myblog
+git clone https://github.com/yuejunonline/my-blog-records.git myblog
 ```
 
