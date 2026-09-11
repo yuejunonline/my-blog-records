@@ -506,7 +506,7 @@ footer:
 index:
   # 首页 Banner 头图，可以是相对路径或绝对路径，以下相同
   # 后面是默认的图片地址，我现在采用网络API获取随机图片，这里地址就移除了。/img/default.png
-  banner_img: https://api.dujin.org/bing/1920.php
+  banner_img: "https://bing.biturl.top/?resolution=1920&format=image&index=0&mkt=zh-CN"
   # 头图高度，屏幕百分比
   # Height ratio of banner image
   # Available: 0 - 100
