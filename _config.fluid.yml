@@ -930,7 +930,7 @@ discuss:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: https://api.dujin.org/bing/1920.php
+  banner_img: "https://bing.biturl.top/?resolution=1920&format=image&index=0&mkt=zh-CN"
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -941,7 +941,7 @@ archive:
 #---------------------------
 category:
   enable: true
-  banner_img: https://api.dujin.org/bing/1920.php
+  banner_img: "https://bing.biturl.top/?resolution=1920&format=image&index=0&mkt=zh-CN"
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -970,7 +970,7 @@ category:
 #---------------------------
 tag:
   enable: true
-  banner_img: https://api.dujin.org/bing/1920.php
+  banner_img: "https://bing.biturl.top/?resolution=1920&format=image&index=0&mkt=zh-CN"
   banner_img_height: 60
   banner_mask_alpha: 0.3
   tagcloud:
@@ -987,7 +987,7 @@ tag:
 #---------------------------
 about:
   enable: true
-  banner_img: https://api.dujin.org/bing/1920.php
+  banner_img: "https://bing.biturl.top/?resolution=1920&format=image&index=0&mkt=zh-CN"
   banner_img_height: 60
   banner_mask_alpha: 0.3
   avatar: /img/psc.jpg
